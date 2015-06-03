@@ -34,9 +34,8 @@ class Wpit_Utility {
 		//Add GA script in footer
 		add_action( 'wp_footer', array( $this, 'add_googleanalytics' ) );
 		
-		//transform youtube link in nocookies
-		add_filter( 'the_content', array( $this, 'youtube_nocookies' ) );
-		add_filter( 'content_save_pre', array( $this, 'youtube_nocookies', 10, 1 ) );
+		// Use youtube-nocookies for oEmbed of YouTube videos
+		add_filter( 'youtube_oembed_nocookie', 'my_embed_oembed_html', 10, 4 );
 		
 		//remove WordPress capitalization
 		remove_filter( 'the_title', 'capital_P_dangit', 11 );
@@ -143,18 +142,21 @@ class Wpit_Utility {
 	
 	
 	/**
-	 * youtube_nocookies function.
+	 * youtube_oembed_nocookie function.
 	 * 
 	 * @access public
-	 * @param mixed $content
+	 * @param string $html    Google Video HTML embed markup.
+   	 * @param string $url     The attempted embed URL.
+    	 * @param array  $attr    An array of shortcode attributes.
+	 * @param int    $post_ID Post ID.
+	 * 
 	 * @return $content
 	 */
-	public function youtube_nocookies( $content ) {
-		
+	function youtube_oembed_nocookie($html, $url, $attr, $post_id) {
 		$search = '/youtube\.com/';
-		$replace = 'youtube-nocookie.com';
-		
-		return preg_replace( $search, $replace, $content );
+    		$replace = 'youtube-nocookie.com';
+
+    		return preg_replace( $search, $replace, $html );
 	}
 }// end class
 

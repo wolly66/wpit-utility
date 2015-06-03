@@ -50,6 +50,10 @@ class Wpit_Utility {
 		remove_filter( 'the_content', 'capital_P_dangit', 11 );
 		remove_filter( 'comment_text', 'capital_P_dangit', 31 );
 
+        // Shortcodes...
+        add_shortcode( 'placeholder', array( $this, 'placeholder_creator' ) );
+
+
     }
 
 	/**
@@ -194,6 +198,3 @@ class Wpit_Utility {
 //Class instance
 
 $wpit_utility = Wpit_Utility::getInstance();
-
-// Shortcodes...
-add_shortcode( 'placeholder', array( 'Wpit_Utility', 'placeholder_creator' ) );

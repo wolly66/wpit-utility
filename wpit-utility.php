@@ -36,7 +36,7 @@ class Wpit_Utility {
 		//get options
 		$this->options = get_option( 'wpit-options' );
 		
-		// init actions...
+		// init actions (update)...
 		add_action( 'init', array( $this, 'update_check' ) );
 
 		//Add GA script in footer

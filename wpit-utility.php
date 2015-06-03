@@ -36,7 +36,7 @@ class Wpit_Utility {
 		//get options
 		$this->options = get_option( 'wpit-options' );
 		
-		//check for plugin update 
+		// init actions (update)...
 		add_action( 'init', array( $this, 'update_check' ) );
 
 		//Add GA script in footer
@@ -49,9 +49,8 @@ class Wpit_Utility {
 		remove_filter( 'the_title', 'capital_P_dangit', 11 );
 		remove_filter( 'the_content', 'capital_P_dangit', 11 );
 		remove_filter( 'comment_text', 'capital_P_dangit', 31 );
-		
 
-	}
+    }
 
 	/**
 	 * Wpit_Utility::__clone()
@@ -167,8 +166,34 @@ class Wpit_Utility {
 
     		return preg_replace( $search, $replace, $html );
 	}
+
+    /**
+     * Shortcode for a nice image placeholder
+     * @author Napolux <napolux@gmail.com>
+     * @usage  [placeholder width=300 height=400 secure=true]
+     */
+    public function placeholder_creator($attr = array()) {
+
+        // Default values, if no values are passed
+        if(!is_array($attr) || empty($attr)) {
+            $secure = true;
+            $width  = 200;
+            $height = 200;
+        } else {
+            $secure     = ($attr['secure'] === 'true') ? true : false;
+            $width      = (int)  $attr['width'];
+            $height     = (int)  $attr['height'];
+        }
+
+        $imgUrl = '<img title="placeholder" alt="placeholder" src="' . (($secure) ? 'https://' : 'http://') . 'placehold.it/' . $width . 'x' . $height . '" />';
+        return $imgUrl;
+    }
+
 }// end class
 
 //Class instance
 
 $wpit_utility = Wpit_Utility::getInstance();
+
+// Shortcodes...
+add_shortcode( 'placeholder', array( 'Wpit_Utility', 'placeholder_creator' ) );

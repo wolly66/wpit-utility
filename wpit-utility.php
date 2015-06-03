@@ -185,7 +185,7 @@ class Wpit_Utility {
             $height     = (int)  $attr['height'];
         }
 
-        $imgUrl = '<img title="placeholder" alt="placeholder" src="' . (($secure) ? 'https://' : 'http://') . 'placehold.it/' . (int) $width . 'x' . (int) $height . '" />';
+        $imgUrl = '<img title="placeholder" alt="placeholder" src="' . (($secure) ? 'https://' : 'http://') . 'placehold.it/' . $width . 'x' . $height . '" />';
         return $imgUrl;
     }
 

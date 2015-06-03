@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: wolly, xlthlx
+Contributors: wolly, xlthlx, flodolo
 Tags: utility, ga analytics, youtube
 Requires at least: 4.3
 Tested up to: 4.3

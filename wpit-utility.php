@@ -2,7 +2,7 @@
 /*
 Plugin Name: WPIT Utility
 Description: Here goes all custom utility
-Author: Wolly, xlthlx
+Author: Wolly, xlthlx, flodolo
 Version: 1.0
 */
 

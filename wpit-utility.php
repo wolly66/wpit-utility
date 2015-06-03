@@ -11,8 +11,6 @@ class Wpit_Utility {
 	//A static member variable representing the class instance
 	private static $_instance = null;
 
-
-
 	/**
 	 * Wpit_Utility::__construct()
 	 * Locked down the constructor, therefore the class cannot be externally instantiated
@@ -35,9 +33,6 @@ class Wpit_Utility {
 		remove_filter( 'the_title', 'capital_P_dangit', 11 );
 		remove_filter( 'the_content', 'capital_P_dangit', 11 );
 		remove_filter( 'comment_text', 'capital_P_dangit', 31 );
-
-
-
 
 	}
 
@@ -74,8 +69,6 @@ class Wpit_Utility {
 			self::$_instance = new self( $args );
 
 		return self::$_instance;
-
-
 	}
 
 
@@ -120,8 +113,8 @@ class Wpit_Utility {
 		
 		return preg_replace( $search, $replace, $content );
 	}
-}// chiudo la classe
+}// end class
 
-//istanzio la classe
+//Class instance
 
 $wpit_utility = Wpit_Utility::getInstance();

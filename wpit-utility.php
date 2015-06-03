@@ -35,7 +35,7 @@ class Wpit_Utility {
 		add_action( 'wp_footer', array( $this, 'add_googleanalytics' ) );
 		
 		// Use youtube-nocookies for oEmbed of YouTube videos
-		add_filter( 'youtube_oembed_nocookie', 'my_embed_oembed_html', 10, 4 );
+		add_filter( 'embed_oembed_html', 'youtube_oembed_nocookie', 10, 4 );
 		
 		//remove WordPress capitalization
 		remove_filter( 'the_title', 'capital_P_dangit', 11 );

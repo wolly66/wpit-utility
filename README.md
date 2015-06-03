@@ -11,4 +11,6 @@ This is a utility plugin, by now those are the functions:
 
 3) Transform all youtube embed in youtube-nocookies
 
+4) A shortcode for simple image placeholders
+
 Many others to come, if you want to suggest new utility to add, ask for.

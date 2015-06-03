@@ -12,10 +12,15 @@ define ( 'WPIT_UTILITY_PLUGIN_SLUG', basename( dirname( __FILE__ ) ) );
 define ( 'WPIT_UTILITY_PLUGIN_VERSION', '1.0' );
 define ( 'WPIT_UTILITY_PLUGIN_VERSION_NAME', 'wpit_utility_version' );
 
+//include option panel
+include_once 'inc/class-wpit-utility-options.php';
+
 class Wpit_Utility {
 
 	//A static member variable representing the class instance
 	private static $_instance = null;
+	
+	private $options;
 
 	/**
 	 * Wpit_Utility::__construct()
@@ -27,6 +32,9 @@ class Wpit_Utility {
 	 */
 
 	private function __construct() {
+		
+		//get options
+		$this->options = get_option( 'wpit-options' );
 		
 		//check for plugin update 
 		add_action( 'init', array( $this, 'update_check' ) );
@@ -41,6 +49,7 @@ class Wpit_Utility {
 		remove_filter( 'the_title', 'capital_P_dangit', 11 );
 		remove_filter( 'the_content', 'capital_P_dangit', 11 );
 		remove_filter( 'comment_text', 'capital_P_dangit', 31 );
+		
 
 	}
 
@@ -85,7 +94,7 @@ class Wpit_Utility {
 	 * @access public
 	 * @return void
 	 */
-	private function update_check() {
+	public function update_check() {
 		// Do checks only in backend
 		if ( is_admin() ) {
 	
@@ -132,7 +141,7 @@ class Wpit_Utility {
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		ga('create', 'UA-xxxxxx-x', 'auto');
+		ga('create', '<?php echo $this->options['ga_ua']; ?>', 'auto');
 		ga('set', 'anonymizeIp', true);
 		ga('send', 'pageview');
 

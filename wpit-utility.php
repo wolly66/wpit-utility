@@ -2,9 +2,15 @@
 /*
 Plugin Name: WPIT Utility
 Description: Here goes all custom utility
-Author: Wolly, 
+Author: Wolly, xlthlx
 Version: 1.0
 */
+
+define ( 'WPIT_UTILITY_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define ( 'WPIT_UTILITY_PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
+define ( 'WPIT_UTILITY_PLUGIN_SLUG', basename( dirname( __FILE__ ) ) );
+define ( 'WPIT_UTILITY_PLUGIN_VERSION', '1.0' );
+define ( 'WPIT_UTILITY_PLUGIN_VERSION_NAME', 'wpit_utility_version' );
 
 class Wpit_Utility {
 
@@ -21,6 +27,9 @@ class Wpit_Utility {
 	 */
 
 	private function __construct() {
+		
+		//check for plugin update 
+		add_action( 'init', array( $this, 'update_check' ) );
 
 		//Add GA script in footer
 		add_action( 'wp_footer', array( $this, 'add_googleanalytics' ) );
@@ -71,7 +80,41 @@ class Wpit_Utility {
 		return self::$_instance;
 	}
 
-
+	/**
+	 * update_UTILITY_check function.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	private function update_check() {
+		// Do checks only in backend
+		if ( is_admin() ) {
+	
+			if ( version_compare( get_site_option( WPIT_UTILITY_VERSION_NAME ), WPIT_UTILITY_VERSION ) != 0  ) {
+	
+			$this->do_update();
+	
+			}
+	
+		} //end if only in the admin
+	}
+	
+	/**
+	 * do_update function.
+	 *
+	 * @access private
+	 *
+	 */
+	private function do_update(){
+	
+		//DO NOTHING, BY NOW, MAYBE IN THE FUTURE
+	
+		//Update option
+	
+		update_option( WPIT_UTILITY_VERSION_NAME , WPIT_UTILITY_VERSION_NUMBER_VERSION );
+	
+	}
+	
 	/**
 	 * add_googleanalytics function.
 	 *

@@ -1,4 +1,12 @@
 <?php
+	
+// ! TODO 
+/** sanitize GA script input
+// ! END TODO
+	
+/**
+ * Wpit_Utility_Options class.
+ */
 class Wpit_Utility_Options
 {
     /**
@@ -91,7 +99,7 @@ class Wpit_Utility_Options
     {
         $new_input = array();
         if( isset( $input['ga_ua'] ) )
-            $new_input['ga_ua'] =  sanitize_text_field( $input['ga_ua'] );
+            $new_input['ga_ua'] =   $input['ga_ua'];
 
         return $new_input;
     }
@@ -110,11 +118,12 @@ class Wpit_Utility_Options
     public function ga_callback()
     {
         printf(
-            '<input type="text" size="100" id="ga_ua" name="wpit-options[ga_ua]" value="%s" />',
-            isset( $this->options['ga_ua'] ) ? sanitize_text_field( $this->options['ga_ua'] ) : ''
+            '<textarea rows="5" cols="100" id="ga_ua" name="wpit-options[ga_ua]">%s</textarea>',
+            isset( $this->options['ga_ua'] ) ?  $this->options['ga_ua']  : ''
         );
     }
-}
+    
+    }
 
 if( is_admin() )
     $wpit_utility_options = new Wpit_Utility_Options();

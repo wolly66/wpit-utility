@@ -5,7 +5,7 @@ Please, now it's in beta stage!
 
 This is a utility plugin, by now those are the functions:
 
-1) Add anonymized google analytics in the footer
+1) Add  analytics script in header or footer, i.e piwik in footer, google analytics in header
 
 2) remove the capital_P_dangit
 

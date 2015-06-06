@@ -86,6 +86,13 @@ class Wpit_Utility_Options
             'wpit-utility-options', // Page
             'wpit_ga_page' // Section           
         );      
+		add_settings_field(
+            'ga_footer', // ID
+            'code in footer', // Title 
+            array( $this, 'ga_footer_callback' ), // Callback
+            'wpit-utility-options', // Page
+            'wpit_ga_page' // Section           
+        );      
 
                  
     }
@@ -100,6 +107,8 @@ class Wpit_Utility_Options
         $new_input = array();
         if( isset( $input['ga_ua'] ) )
             $new_input['ga_ua'] =   $input['ga_ua'];
+        if( isset( $input['footer'] ) )
+            $new_input['footer'] =   $input['footer'];
 
         return $new_input;
     }
@@ -121,7 +130,18 @@ class Wpit_Utility_Options
             '<textarea rows="5" cols="100" id="ga_ua" name="wpit-options[ga_ua]">%s</textarea>',
             isset( $this->options['ga_ua'] ) ?  $this->options['ga_ua']  : ''
         );
+        
+        
     }
+    
+    public function ga_footer_callback()
+    {
+                
+                
+       print '<input type="checkbox" name="wpit-options[footer]" value="footer" ' .  checked( $this->options['footer'], 'footer', false ) . ' />';
+			
+    }
+
     
     }
 

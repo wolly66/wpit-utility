@@ -40,7 +40,11 @@ class Wpit_Utility {
 		add_action( 'init', array( $this, 'update_check' ) );
 
 		//Add GA script in footer
-		add_action( 'wp_head', array( $this, 'add_googleanalytics' ) );
+		if ( 'footer' != $this->options['footer'] ){
+			add_action( 'wp_head', array( $this, 'add_googleanalytics' ) );
+		} else {
+			add_action( 'wp_footer', array( $this, 'add_googleanalytics' ) );
+		}
 		
 		// Use youtube-nocookies for oEmbed of YouTube videos
 		add_filter( 'embed_oembed_html', 'youtube_oembed_nocookie', 10, 4 );
